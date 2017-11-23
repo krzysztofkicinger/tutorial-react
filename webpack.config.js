@@ -7,13 +7,28 @@ module.exports = {
     ],
 
     resolve: {
-        extensions: [ '.js', '.jsx' ]
+        extensions: ['.js', '.jsx']
     },
 
     output: {
         path: path.resolve(__dirname, 'public'),
         publicPath: '/',
         filename: 'bundle.js'
+    },
+
+    module: {
+        rules: [
+            {
+                test: /\.jsx?$/,
+                exclude: [/node_modules/],
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['react', 'es2015', 'stage-1']
+                    }
+                }
+            }
+        ]
     },
 
     devServer: {
